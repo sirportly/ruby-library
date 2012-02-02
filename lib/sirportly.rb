@@ -4,6 +4,7 @@ require 'json'
 
 require 'sirportly/request'
 require 'sirportly/ticket'
+require 'sirportly/knowledge_base'
 require 'sirportly/objects'
 
 module Sirportly
