@@ -9,15 +9,16 @@ module Sirportly
       end
 
       def find_by_id(id)
-        Request.request('knowledge/tree', :kb => id)
-        self.new(id)
+        tree = Request.request('knowledge/tree', :kb => id)
+        self.new(id, tree = tree)
       rescue Errors::NotFound
         false
       end
     end
 
-    def initialize(id)
-      self.id = id
+    def initialize(id, tree = nil)
+      @id = id
+      @tree = tree
     end
 
     def page(path)
@@ -25,7 +26,7 @@ module Sirportly
     end
 
     def tree
-      request('tree')
+      @tree ||= request('tree')
     end
 
     def add_page(options = {})
