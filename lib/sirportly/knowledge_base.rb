@@ -2,9 +2,8 @@ module Sirportly
   class KnowledgeBase
 
     attr_accessor :id
-
+    
     class << self
-
       def list
         Request.request('knowledge/list')
       end
@@ -15,7 +14,6 @@ module Sirportly
       rescue Errors::NotFound
         false
       end
-
     end
 
     def initialize(id)
