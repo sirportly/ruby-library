@@ -12,7 +12,7 @@ module Sirportly
     
     ## Returns the current version number for the Sirportly API client.
     def version
-      "1.0.0-beta"
+      "1.0.1-beta"
     end
     
     ## Stores authentication details
