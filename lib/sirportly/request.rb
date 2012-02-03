@@ -26,6 +26,7 @@ module Sirportly
     def make
       uri = URI.parse([Sirportly.domain, "api/v1", @path].join('/'))
       http_request = http_class.new(uri.request_uri)
+      http_request.initialize_http_header({"User-Agent" => "SirportlyRubyClient/#{Sirportly.version}"})
       http_request.add_field("X-Auth-Token", Sirportly.token)
       http_request.add_field("X-Auth-Secret", Sirportly.secret)
       http_request.set_form_data(@data)

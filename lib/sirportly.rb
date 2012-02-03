@@ -12,7 +12,7 @@ module Sirportly
     
     ## Returns the current version number for the Sirportly API client.
     def version
-      "1.0.1-beta"
+      "1.0.2"
     end
     
     ## Stores authentication details
@@ -24,7 +24,7 @@ module Sirportly
     
     ## Returns the domain which should be used to query the API
     def domain
-      @domain ||= 'https://app.sirportly.com'
+      @domain ||= 'https://api.sirportly.com'
     end
     
   end
