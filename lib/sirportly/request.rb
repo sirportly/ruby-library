@@ -29,6 +29,11 @@ module Sirportly
       http_request.initialize_http_header({"User-Agent" => "SirportlyRubyClient/#{Sirportly.version}"})
       http_request.add_field("X-Auth-Token", Sirportly.token)
       http_request.add_field("X-Auth-Secret", Sirportly.secret)
+
+      if Sirportly.application
+        http_request.add_field("X-Auth-Application", Sirportly.application)
+      end
+
       http_request.set_form_data(@data)
       
       http = Net::HTTP.new(uri.host, uri.port)

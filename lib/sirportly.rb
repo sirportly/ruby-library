@@ -3,21 +3,30 @@ require 'net/https'
 require 'json'
 
 require 'sirportly/request'
-require 'sirportly/ticket'
-require 'sirportly/knowledge_base'
-require 'sirportly/objects'
+require 'sirportly/data_object'
+
+require 'sirportly/data_objects/brand'
+require 'sirportly/data_objects/department'
+require 'sirportly/data_objects/escalation_path'
+require 'sirportly/data_objects/priority'
+require 'sirportly/data_objects/filter'
+require 'sirportly/data_objects/sla'
+require 'sirportly/data_objects/status'
+require 'sirportly/data_objects/team'
+require 'sirportly/data_objects/user'
 
 module Sirportly
   class << self
     
     ## Returns the current version number for the Sirportly API client.
     def version
-      "1.0.2"
+      "1.1.0"
     end
     
     ## Stores authentication details
     attr_accessor :token
     attr_accessor :secret
+    attr_accessor :application
     
     ## Allow the domain to be changed
     attr_writer :domain
@@ -39,3 +48,6 @@ module Sirportly
   end
   
 end
+
+Sirportly.token = 'dfc75dc1-ce49-1b02-e4ca-900d6673e6d4'
+Sirportly.secret = 'lpodkv4ofptamtlqn0ruxvtg1f1ndvjik9o7zdgbmv88zn9du3'
