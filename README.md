@@ -37,17 +37,8 @@ Sirportly::Priority.first           #=> A Sirportly::Priority object for the fir
 Sirportly::Brand.first.departments  #=> Array of Sirportly::Department objects
 ```
 
-The following objects can be retrieved in this manner:
-
-* Brand
-* Department
-* EscalationPath
-* Filter
-* Priority
-* SLA
-* Status
-* Team
-* User
+The following objects can be retrieved in this manner: Brand, Department, EscalationPath, Filter,
+Priority, SLA, Status, Team and User.
 
 ### Pagination
 
