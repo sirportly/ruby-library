@@ -48,6 +48,3 @@ module Sirportly
   end
   
 end
-
-Sirportly.token = 'dfc75dc1-ce49-1b02-e4ca-900d6673e6d4'
-Sirportly.secret = 'lpodkv4ofptamtlqn0ruxvtg1f1ndvjik9o7zdgbmv88zn9du3'
