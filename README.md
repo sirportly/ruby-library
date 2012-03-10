@@ -37,6 +37,18 @@ Sirportly::Priority.first           #=> A Sirportly::Priority object for the fir
 Sirportly::Brand.first.departments  #=> Array of Sirportly::Department objects
 ```
 
+The following objects can be retrieved in this manner:
+
+* Brand
+* Department
+* EscalationPath
+* Filter
+* Priority
+* SLA
+* Status
+* Team
+* User
+
 ### Pagination
 
 Some results from the API are paginated as outlined below. By default, it will always 
