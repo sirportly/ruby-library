@@ -26,6 +26,13 @@ to access your database.
 sirportly = Sirportly::Client.new('the_token', 'the_secret')
 ```
 
+If you have been provided with an application token to use with user-based authentication you 
+can set this as follows:
+
+```ruby
+Sirportly.application = 'your_application_token'
+```
+
 ## Accessing Static Data Objects
 
 The Sirportly API provides access to all the data objects stored in your Sirportly database.
