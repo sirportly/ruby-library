@@ -3,6 +3,7 @@ require 'net/https'
 require 'json'
 
 require 'sirportly/request'
+require 'sirportly/data_set'
 require 'sirportly/data_object'
 
 require 'sirportly/data_objects/brand'
