@@ -52,6 +52,7 @@ module Sirportly
     class AccessDenied < Error; end
     class NotFound < Error; end
     class CommunicationError < Error; end
+    class ValidationError < Error; end
   end
   
 end

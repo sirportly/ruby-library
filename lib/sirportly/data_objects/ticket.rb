@@ -14,26 +14,37 @@ module Sirportly
       end
     end
     
+    def update(params)      
+      if req = client.request('tickets/update', format_params(params))
+        set_attributes(req)
+        true
+      else
+        false
+      end
+      
+    end
+    
     def post_update(params = {})
-      params.merge!({:ticket => @attributes['reference']})
-      
-      if (params[:user] || params['user']).is_a?(Sirportly::User)
-        params[:user] = (params[:user] || params['user']).id
-        params.delete('user')
-      end
-      
-      if (params[:customer] || params['customer']).is_a?(Sirportly::Customer)
-        params[:customer] = (params[:customer] || params['customer']).id
-        params.delete('customer')
-      end
-      
-      if req = client.request('tickets/post_update', params)
+      if req = client.request('tickets/post_update', format_params(params))
         update = TicketUpdate.new(@client, req)
         @attributes['updates'] << update
         update
       else
         false
       end
+    end
+    
+    private
+    
+    def format_params(params)
+      params.inject({:ticket => @attributes['reference']}) do |hash, (k,v)|
+        if v.kind_of?(Sirportly::DataObject) && v.attributes.keys.include?('id')
+          hash[k] = v.id
+        else
+          hash[k] = v
+        end
+        hash
+      end      
     end
         
   end

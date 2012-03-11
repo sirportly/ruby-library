@@ -42,18 +42,37 @@ sirportly.tickets                   #=> A set of all tickets (paginated)
 sirportly.ticket('AB-123123')       #=> Returns a Sirportly::Ticket object for the passed reference
 ```
 
-## Manipulating Tickets
+## Changing ticket properties
 
-In addition to accessing ticket data, you can also manipulate tickets straight through the
-`Sirportly::Ticket` instance.
+If you wish to change properties of a ticket, you can use the `update` method. This method behaves
+exactly the same as the corresponding API method and further details can be found in the 
+[documentation](https://atech.sirportly.com/knowledge/4/api-specification/tickets/changing-ticket-properties). 
+You can pass strings, IDs or `Sirportly::DataObject` objects as values. 
 
 ```ruby
 ticket = sirportly.ticket('AB-123123')
 
-# Execute a macro on a ticket by passing the name or ID of a macro
-ticket.run_macro('Mark as waiting for staff')     #=> true
+# Change a ticket status
+ticket.update(:status => "waiting for staff")
 
+# Change a ticket priority
+ticket.update(:priority => "low")
+
+# Change multiple attributes
+ticket.update(:team => "1st line support", :user => "dave")
 ```
+
+## Executing Macros
+
+If you wish to execute one of your macros on a ticket, you can use the `run_macro` method
+which accepts the ID or name of the macro you wish to execute. If executed successfully,
+it will return true and the original ticket properties will be updated. If it fails, an
+exception will be raised or the method will return false.
+
+```ruby
+ticket = sirportly.ticket('AB-123123')
+ticket.run_macro('Mark as waiting for staff')
+````
 
 ## Posting updates to tickets
 
