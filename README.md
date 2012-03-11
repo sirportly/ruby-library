@@ -80,10 +80,10 @@ user = sirportly.user('adam')
 ticket.post_update(:message => "My Example Message", :user => user)
 
 # To post an update and e-mail it to the customer
-ticket.post_update(:message => "My Example", :user => user, :outbound_address => 'support@yourdomain.com')
+ticket.post_update(:message => "My Example", :user => 'adam', :outbound_address => 'support@yourdomain.com')
 
 # To post a private update as a user
-ticket.post_update(:message => "Private Msg", :private => true, :user => user)
+ticket.post_update(:message => "Private Msg", :private => true, :user => 'charlie')
 ```
 
 
