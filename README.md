@@ -55,6 +55,37 @@ ticket.run_macro('Mark as waiting for staff')     #=> true
 
 ```
 
+## Posting updates to tickets
+
+Posting updates to tickets is a simple affair and the `post_update` method on a `Sirportly::Ticket`
+will accept the same parameters as defined in the [documentation](http://www.sirportly.com/docs/api-specification/tickets/posting-an-update).
+
+As you will see from the examples below, you can pass a `Sirportly::User` instance to `user` and a 
+`Sirportly::Customer` instance to `customer` although strings are perfectly acceptable too.
+
+The `post_update` method will return a `Sirportly::TicketUpdate` instance and the new update will
+be added to the `updates` array on the original ticket.
+
+```ruby
+ticket = sirportly.ticket('AB-123123')
+
+# To post a system message without a user
+ticket.post_update(:message => "My Example Message")
+
+# To post an update as the ticket customer
+ticket.post_update(:message => "My Example Message", :customer => ticket.customer)
+
+# To post an update as a user
+user = sirportly.user('adam')
+ticket.post_update(:message => "My Example Message", :user => user)
+
+# To post an update and e-mail it to the customer
+ticket.post_update(:message => "My Example", :user => user, :outbound_address => 'support@yourdomain.com')
+
+# To post a private update as a user
+ticket.post_update(:message => "Private Msg", :private => true, :user => user)
+```
+
 
 ## Accessing Static Data Objects
 
