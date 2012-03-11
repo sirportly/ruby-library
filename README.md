@@ -74,7 +74,7 @@ sirportly.customer('Dave Smith')    #=> Returns a Sirportly::Customer object
 You can access the following objects using this method: brands, departments, escalation_paths,
 filters, priorities, slas, statuses, teams and users.
 
-### Pagination
+## Pagination
 
 Some results from the API are paginated as outlined below. By default, it will always 
 return the first page.
