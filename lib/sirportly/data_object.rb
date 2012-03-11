@@ -25,8 +25,8 @@ module Sirportly
     def initialize(attributes = {})
       @attributes = attributes.inject({}) do |hash, (k,v)|
         case k
-        when 'created_at', 'updated_at'
-          hash[k] = Time.parse(v)
+        when 'created_at', 'updated_at', 'submitted_at', 'reply_due_at', 'resolution_due_at'
+          hash[k] = v ? Time.parse(v) : nil
         else
           hash[k] = v          
           if self.class.maps.is_a?(Hash) && klass_name = self.class.maps[k]

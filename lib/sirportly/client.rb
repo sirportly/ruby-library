@@ -62,6 +62,16 @@ module Sirportly
       Team.all(self)
     end
     
+    ## Return all tickets
+    def tickets
+      Ticket.all(self)
+    end
+    
+    ## Return a specific ticket
+    def ticket(q)
+      Ticket.find(self, q)
+    end
+    
     ## Return all users
     def users(opts = {})
       User.all(self, opts)

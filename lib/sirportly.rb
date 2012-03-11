@@ -18,6 +18,8 @@ require 'sirportly/data_objects/filter'
 require 'sirportly/data_objects/sla'
 require 'sirportly/data_objects/status'
 require 'sirportly/data_objects/team'
+require 'sirportly/data_objects/ticket'
+require 'sirportly/data_objects/ticket_update'
 require 'sirportly/data_objects/user'
 
 module Sirportly
