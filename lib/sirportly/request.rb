@@ -54,7 +54,8 @@ module Sirportly
       when Net::HTTPForbidden, Net::HTTPUnauthorized
         raise Sirportly::Errors::AccessDenied, "Access Denied for '#{Sirportly.token}'"
       when Net::HTTPNotFound
-        raise Sirportly::Errors::NotFound, "Not Found at #{uri.to_s}"
+        json = JSON.parse(http_result.body)
+        raise Sirportly::Errors::NotFound, json['error']
       when Net::HTTPClientError
         @output
       else

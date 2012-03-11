@@ -8,20 +8,7 @@ module Sirportly
         records = records['records']
       end
 
-      records.map! do |r|
-        if klass.maps
-          for key, klass_name in klass.maps
-            if r[key].is_a?(Array)
-              r[key] = r[key].map { |p| Sirportly.const_get(klass_name).new(p) }
-            elsif r[key].is_a?(Hash)
-              r[key] = Sirportly.const_get(klass_name).new(r[key])
-            end
-          end
-        end
-      
-        klass.new(r)
-      end
-
+      records.map! { |r| klass.new(r) }
       self.push(*records)
     end
   

@@ -1,3 +1,4 @@
+require 'time'
 require 'uri'
 require 'net/https'
 require 'json'
@@ -8,6 +9,8 @@ require 'sirportly/data_set'
 require 'sirportly/data_object'
 
 require 'sirportly/data_objects/brand'
+require 'sirportly/data_objects/customer'
+require 'sirportly/data_objects/customer_contact_method'
 require 'sirportly/data_objects/department'
 require 'sirportly/data_objects/escalation_path'
 require 'sirportly/data_objects/priority'

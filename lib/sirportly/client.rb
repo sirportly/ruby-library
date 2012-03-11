@@ -17,6 +17,16 @@ module Sirportly
       Brand.all(self)
     end
     
+    ## Return all customers
+    def customers(opts = {})
+      Customer.all(self, opts)
+    end
+    
+    ## Return a specific customer
+    def customer(q)
+      Customer.find(self, q)
+    end
+    
     ## Return all departments
     def departments
       Department.all(self)
@@ -55,6 +65,11 @@ module Sirportly
     ## Return all users
     def users(opts = {})
       User.all(self, opts)
+    end
+    
+    ## Return a specific user
+    def user(q)
+      User.find(self, q)
     end
     
   end
