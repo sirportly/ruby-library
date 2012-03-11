@@ -33,6 +33,29 @@ can set this as follows:
 Sirportly.application = 'your_application_token'
 ```
 
+## Accessing Tickets
+
+You can access ticket information directly through the Ruby interface.
+
+```ruby
+sirportly.tickets                   #=> A set of all tickets (paginated)
+sirportly.ticket('AB-123123')       #=> Returns a Sirportly::Ticket object for the passed reference
+```
+
+## Manipulating Tickets
+
+In addition to accessing ticket data, you can also manipulate tickets straight through the
+`Sirportly::Ticket` instance.
+
+```ruby
+ticket = sirportly.ticket('AB-123123')
+
+# Execute a macro on a ticket by passing the name or ID of a macro
+ticket.run_macro('Mark as waiting for staff')     #=> true
+
+```
+
+
 ## Accessing Static Data Objects
 
 The Sirportly API provides access to all the data objects stored in your Sirportly database.

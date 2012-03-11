@@ -1,14 +1,14 @@
 module Sirportly
   class DataSet < Array
   
-    def initialize(records, klass)
+    def initialize(client, records, klass)
       @pagination = {}
       if records.is_a?(Hash)
         @pagination = records['pagination']
         records = records['records']
       end
 
-      records.map! { |r| klass.new(r) }
+      records.map! { |r| klass.new(client, r) }
       self.push(*records)
     end
   
