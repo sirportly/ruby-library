@@ -43,6 +43,9 @@ sirportly.statuses                  #=> Set of all statuses as Sirportly::Status
 sirportly.priorities.first          #=> A Sirportly::Priority object for the first record
 
 sirportly.brands.first.departments  #=> Array of Sirportly::Department objects
+
+sirportly.user('adam')              #=> Returns a Sirportly::User object
+sirportly.customer('Dave Smith')    #=> Returns a Sirportly::Customer object
 ```
 
 You can access the following objects using this method: brands, departments, escalation_paths,
