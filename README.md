@@ -16,13 +16,14 @@ To install the library, you just need to install the Gem.
 
 If you have a Gemfile, you can just include `sirportly` in this and run `bundle install`.
 
-## Configuration
+## Setting up a Sirportly Client
 
-In order authenticate to the API, you need to set your API token & secret as shown below:
+All requests to API are made through a `Sirportly::Client` instance which must be initialised
+using your API token & secret as shown below. Once this has been initialised, you can use it
+to access your database.
 
 ```ruby
-Sirportly.token = '5c7f4c54-b701-aefa-bd50-fef3fbdb7e3e'
-Sirportly.secret = 'bdln94x17xivhqvv5s93vv92ei2fun0i2uxusf4834dk5850ve'
+sirportly = Sirportly::Client.new('the_token', 'the_secret')
 ```
 
 ## Accessing Static Data Objects
@@ -31,14 +32,14 @@ The Sirportly API provides access to all the data objects stored in your Sirport
 At the current time, these cannot be edited through the API. 
 
 ```ruby
-Sirportly::Status.all               #=> Set of all statuses as Sirportly::Status objects
-Sirportly::Priority.first           #=> A Sirportly::Priority object for the first record
+sirportly.statuses                  #=> Set of all statuses as Sirportly::Status objects
+sirportly.priorities.first          #=> A Sirportly::Priority object for the first record
 
-Sirportly::Brand.first.departments  #=> Array of Sirportly::Department objects
+sirportly.brands.first.departments  #=> Array of Sirportly::Department objects
 ```
 
-The following objects can be retrieved in this manner: Brand, Department, EscalationPath, Filter,
-Priority, SLA, Status, Team and User.
+You can access the following objects using this method: brands, departments, escalation_paths,
+filters, priorities, slas, statuses, teams and users.
 
 ### Pagination
 
@@ -46,7 +47,7 @@ Some results from the API are paginated as outlined below. By default, it will a
 return the first page.
 
 ```ruby
-users = Sirportly::User.all(:page => 1)
+users = sirportly.users(:page => 1)
 
 users.each do |user|
   user.is_a?(Sirportly::User)     #=> true

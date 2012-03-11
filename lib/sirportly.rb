@@ -2,6 +2,7 @@ require 'uri'
 require 'net/https'
 require 'json'
 
+require 'sirportly/client'
 require 'sirportly/request'
 require 'sirportly/data_set'
 require 'sirportly/data_object'
@@ -24,9 +25,9 @@ module Sirportly
       "1.1.0"
     end
     
-    ## Stores authentication details
-    attr_accessor :token
-    attr_accessor :secret
+    ## Stores the application token if one has been provided. This can be nil if no
+    ## application token exists, however if nil, you cannot authenticate using user
+    ## tokens.
     attr_accessor :application
     
     ## Allow the domain to be changed

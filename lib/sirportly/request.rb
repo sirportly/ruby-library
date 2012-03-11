@@ -1,18 +1,19 @@
 module Sirportly
   class Request
     
-    def self.request(path, data = {})
-      req = self.new(path, :post)
+    def self.request(client, path, data = {})
+      req = self.new(client, path, :post)
       req.data = data
       req.make && req.success? ? req.output : false
     end
     
-    attr_reader :path, :method
+    attr_reader :path, :method, :client
     attr_accessor :data
     
-    def initialize(path, method = :get)
+    def initialize(client, path, method = :get)
       @path = path
       @method = method
+      @client = client
     end
     
     def success?
@@ -27,8 +28,8 @@ module Sirportly
       uri = URI.parse([Sirportly.domain, "api/v1", @path].join('/'))
       http_request = http_class.new(uri.request_uri)
       http_request.initialize_http_header({"User-Agent" => "SirportlyRubyClient/#{Sirportly.version}"})
-      http_request.add_field("X-Auth-Token", Sirportly.token)
-      http_request.add_field("X-Auth-Secret", Sirportly.secret)
+      http_request.add_field("X-Auth-Token", @client.token)
+      http_request.add_field("X-Auth-Secret", @client.secret)
 
       if Sirportly.application
         http_request.add_field("X-Auth-Application", Sirportly.application)

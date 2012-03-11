@@ -5,8 +5,8 @@ module Sirportly
       attr_accessor :api_path
       attr_accessor :maps
       
-      def all(options = {})
-        result = Request.request(api_path, :page => options[:page] || 1)
+      def all(client, options = {})
+        result = client.request(api_path, :page => options[:page] || 1)
         DataSet.new(result, self)
       end
       
