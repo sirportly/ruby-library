@@ -62,6 +62,8 @@ ticket.update(:priority => "low")
 ticket.update(:team => "1st line support", :user => "dave")
 ```
 
+Once an update has been carried out, the original ticket object will be updated to include the new properties.
+
 ## Executing Macros
 
 If you wish to execute one of your macros on a ticket, you can use the `run_macro` method
