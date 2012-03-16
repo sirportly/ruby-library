@@ -37,6 +37,15 @@ module Sirportly
       end
     end
     
+    # Adds a follow up to the ticket
+    def add_follow_up(params = {})
+      if req = client.request('tickets/followup', format_params(params))
+        true
+      else
+        false
+      end
+    end
+    
     # Creates a new ticket and returns a ticket object
     def self.create(client, params = {})
       if req = client.request('tickets/submit', format_params(params))

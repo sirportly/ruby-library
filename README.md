@@ -102,18 +102,6 @@ ticket.update(:team => "1st line support", :user => "dave")
 
 Once an update has been carried out, the original ticket object will be updated to include the new properties.
 
-## Executing Macros
-
-If you wish to execute one of your macros on a ticket, you can use the `run_macro` method
-which accepts the ID or name of the macro you wish to execute. If executed successfully,
-it will return true and the original ticket properties will be updated. If it fails, an
-exception will be raised or the method will return false.
-
-```ruby
-ticket = sirportly.ticket('AB-123123')
-ticket.run_macro('Mark as waiting for staff')
-````
-
 ## Posting updates to tickets
 
 Posting updates to tickets is a simple affair and the `post_update` method on a `Sirportly::Ticket`
@@ -145,6 +133,31 @@ ticket.post_update(:message => "My Example", :user => 'adam', :outbound_address 
 ticket.post_update(:message => "Private Msg", :private => true, :user => 'charlie')
 ```
 
+## Executing Macros
+
+If you wish to execute one of your macros on a ticket, you can use the `run_macro` method
+which accepts the ID or name of the macro you wish to execute. If executed successfully,
+it will return true and the original ticket properties will be updated. If it fails, an
+exception will be raised or the method will return false.
+
+```ruby
+ticket = sirportly.ticket('AB-123123')
+ticket.run_macro('Mark as waiting for staff')
+````
+
+## Adding follow ups
+
+Adding to follow ups to tickets can be achieved by executing the `add_follow_up` method on a 
+`Sirportly::Ticket` instance.
+
+```ruby
+ticket = sirportly.ticket('AB-123123')
+ticket.add_follow_up(:actor => 'adam', :status => 'resolved', :run_at => '2 days from now') #=> true
+```
+
+The `run_at` attribute should be a timestamp as outlined on our
+[date/time formatting page](http://www.sirportly.com/docs/api-specification/date-time-formatting) in 
+the API documentation.
 
 ## Accessing Static Data Objects
 
