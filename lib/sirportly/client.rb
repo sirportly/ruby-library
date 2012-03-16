@@ -52,6 +52,11 @@ module Sirportly
       SLA.all(self)
     end
     
+    ## Execute an SPQL query and return the SPQLQuery instance
+    def spql(query)
+      SPQLQuery.new(self, query)
+    end
+    
     ## Return all statuses
     def statuses
       Status.all(self)

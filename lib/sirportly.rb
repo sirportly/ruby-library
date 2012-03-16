@@ -7,6 +7,7 @@ require 'sirportly/client'
 require 'sirportly/request'
 require 'sirportly/data_set'
 require 'sirportly/data_object'
+require 'sirportly/spql_query'
 
 require 'sirportly/data_objects/brand'
 require 'sirportly/data_objects/customer'

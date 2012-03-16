@@ -151,3 +151,16 @@ users.offset            #=> 0
 If a result set is not paginated, the methods outlined above will be nil. Pagination will only occur 
 at the top level of results and does not happen on arrays within objects.
 
+## Executing SPQL queries
+
+Sirportly includes a powerful query language called SPQL (SirPortly Query Language) which allows you
+to query your ticket data through the API. This is primarily used to generate reports however can also
+be used to return data for your own purposes.
+
+```ruby
+query = sirportly.spql('SELECT COUNT, brand.name FROM tickets GROUP BY brand.name')
+query.fields          #=> ["COUNT", "brand.name"]
+query.results         #=> [[123, "Appli"], [456, "aTech Media"], [789, "aTech Telecoms"], [123, "Sirportly"]]
+query.query           #=> "SELECT COUNT, brand.name FROM tickets GROUP BY brand.name"
+query.class.to_s      #=> Sirportly::SPQLQuery
+```

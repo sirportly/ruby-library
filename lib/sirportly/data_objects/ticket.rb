@@ -24,7 +24,6 @@ module Sirportly
       else
         false
       end
-      
     end
     
     # Posts a new update to the ticket. Accepts a hash of parameters needed to create the update.
