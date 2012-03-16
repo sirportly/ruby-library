@@ -72,6 +72,11 @@ module Sirportly
       Ticket.find(self, q)
     end
     
+    ## Return a set of tickets for given search term
+    def ticket_search(query, page = 1)
+      Ticket.search(self, query, page)
+    end
+    
     ## Return all users
     def users(opts = {})
       User.all(self, opts)

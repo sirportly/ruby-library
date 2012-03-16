@@ -34,6 +34,14 @@ module Sirportly
       end
     end
     
+    def self.search(client, query, page = 1)
+      if req = client.request('tickets/search', :query => query, :page => page)
+        DataSet.new(client, req, self)
+      else
+        false
+      end
+    end
+    
     private
     
     def format_params(params)

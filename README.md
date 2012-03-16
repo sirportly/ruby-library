@@ -40,6 +40,7 @@ You can access ticket information directly through the Ruby interface.
 ```ruby
 sirportly.tickets                   #=> A set of all tickets (paginated)
 sirportly.ticket('AB-123123')       #=> Returns a Sirportly::Ticket object for the passed reference
+sirportly.ticket_search('example')  #=> A set of all tickets matching 'example' from the search
 ```
 
 ## Changing ticket properties
