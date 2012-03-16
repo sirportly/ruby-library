@@ -55,6 +55,17 @@ module Sirportly
       end
     end
     
+    # Returns tickets which match the passed filter
+    def self.filter(client, filter, options = {})
+      filter = filter.id if filter.is_a?(Sirportly::Filter)
+      options[:user] = options[:user].id if options[:user].is_a?(Sirportly::User)
+      if req = client.request('tickets/filter', options.merge({:filter => filter}))
+        DataSet.new(client, req, self)
+      else
+        false
+      end
+    end
+    
     private
     
     def format_params(params)

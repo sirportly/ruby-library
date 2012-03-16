@@ -71,6 +71,15 @@ sirportly.ticket('AB-123123')       #=> Returns a Sirportly::Ticket object for t
 sirportly.ticket_search('example')  #=> A set of all tickets matching 'example' from the search
 ```
 
+You can also access tickets through filter objects.
+
+```ruby
+filter = sirportly.filters.first    #=> A Sirportly::Filter object
+filter.tickets                      #=> A Sirportly::DataSet of objects (paginated)
+filter.tickets(:page => 2)          #=> The second page of tickets
+filter.tickets(:user => 'adam')     #=> The tickets as if being accessed by 'adam'
+```
+
 ## Changing ticket properties
 
 If you wish to change properties of a ticket, you can use the `update` method. This method behaves
