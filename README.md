@@ -33,6 +33,34 @@ can set this as follows:
 Sirportly.application = 'your_application_token'
 ```
 
+## Creating a ticket
+
+You can create tickets within your Sirportly system with a few commands. It's important to note that
+creating a new ticket is a two step process - firstly, you need to create a `Ticket` record and then
+you need to post your initial update using the `post_update` method on your newly created ticket.
+
+```ruby
+# Create the skeleton ticket
+properties = {
+  :brand => 'Sirportly',
+  :department => 'Sales',
+  :status => 'New',
+  :priority => 'Normal',
+  :subject => 'A new sales enquiry',
+  :name => 'My New Customer',
+  :email => 'customeremail@theirdomain.com'
+}
+ticket = sirportly.create_ticket(properties)    #=> A Sirportly::Ticket instance
+
+# Now add the first update to this ticket
+update = ticket.post_update(:message => "I would like some more info about your product", :customer => ticket.customer)
+```
+
+If an error occurs, you will receive a Sirportly::Errors::ValidationError exception. There are many
+other properties which can be passed to the `create_ticket` method which are not documented here. Take
+a look at the [API documentation](http://www.sirportly.com/docs/api-specification/tickets/submitting-a-new-ticket)
+for more information about the options available.
+
 ## Accessing Tickets
 
 You can access ticket information directly through the Ruby interface.

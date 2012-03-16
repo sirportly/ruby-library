@@ -17,6 +17,11 @@ module Sirportly
       Brand.all(self)
     end
     
+    ## Creates a new ticket
+    def create_ticket(params = {})
+      Ticket.create(self, params)
+    end
+    
     ## Return all customers
     def customers(opts = {})
       Customer.all(self, opts)

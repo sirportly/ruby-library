@@ -30,8 +30,17 @@ module Sirportly
     def post_update(params = {})
       if req = client.request('tickets/post_update', format_params(params))
         update = TicketUpdate.new(@client, req)
-        @attributes['updates'] << update
+        (@attributes['updates'] ||= []) << update
         update
+      else
+        false
+      end
+    end
+    
+    # Creates a new ticket and returns a ticket object
+    def self.create(client, params = {})
+      if req = client.request('tickets/submit', format_params(params))
+        self.new(client, req)
       else
         false
       end
@@ -49,14 +58,18 @@ module Sirportly
     private
     
     def format_params(params)
-      params.inject({:ticket => @attributes['reference']}) do |hash, (k,v)|
+      self.class.format_params(params.merge({:ticket => @attributes['reference']}))
+    end
+    
+    def self.format_params(params)
+      params.inject({}) do |hash, (k,v)|
         if v.kind_of?(Sirportly::DataObject) && v.attributes.keys.include?('id')
           hash[k] = v.id
         else
           hash[k] = v
         end
         hash
-      end      
+      end
     end
         
   end
