@@ -164,3 +164,11 @@ query.results         #=> [[123, "Appli"], [456, "aTech Media"], [789, "aTech Te
 query.query           #=> "SELECT COUNT, brand.name FROM tickets GROUP BY brand.name"
 query.class.to_s      #=> Sirportly::SPQLQuery
 ```
+
+If you execute a query which is invalid, a `Sirportly::Errors::ValidationError` will be raised with some
+information about the error.
+
+```ruby
+query = sirportly.spql('SELECT COUNT FROM non_existent_table')
+Sirportly::Errors::ValidationError: ["Invalid FROM table specified"]
+```
