@@ -24,12 +24,9 @@ require 'sirportly/data_objects/ticket_update'
 require 'sirportly/data_objects/user'
 
 module Sirportly
+  VERSION = '1.1.3'
+  
   class << self
-    
-    ## Returns the current version number for the Sirportly API client.
-    def version
-      "1.1.0"
-    end
     
     ## Stores the application token if one has been provided. This can be nil if no
     ## application token exists, however if nil, you cannot authenticate using user
