@@ -174,7 +174,7 @@ user_properties = {
 user = sirportly.create_user(user_properties)  #=> A Sirportly::User instance
 ```
 
-There are other attributes available, which can be view on the [API docs](http://www.sirportly.com/docs/api-specification/users/create-new-user).
+There are other attributes available, which can be viewed on the [API docs](http://www.sirportly.com/docs/api-specification/users/create-new-user).
 
 You do not need to create individual customers. These are created automatically on ticket and ticket update creation.
 
