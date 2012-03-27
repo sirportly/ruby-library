@@ -159,6 +159,25 @@ The `run_at` attribute should be a timestamp as outlined on our
 [date/time formatting page](http://www.sirportly.com/docs/api-specification/date-time-formatting) in 
 the API documentation.
 
+## Creating a user
+
+You can create users (staff members) via the API.
+
+```ruby
+user_properties = {
+  :first_name    => 'John',
+  :last_name     => 'Particle',
+  :email_address => 'john@testcompany.com',
+  :admin_access  => true
+}
+
+user = sirportly.create_user(user_properties)  #=> A Sirportly::User instance
+```
+
+There are other attributes available, which can be view on the [API docs](http://www.sirportly.com/docs/api-specification/users/create-new-user).
+
+You do not need to create individual customers. These are created automatically on ticket and ticket update creation.
+
 ## Accessing Static Data Objects
 
 The Sirportly API provides access to all the data objects stored in your Sirportly database.

@@ -97,5 +97,10 @@ module Sirportly
       User.find(self, q)
     end
     
+    ## Create a user
+    def create_user(params = {})
+      User.create(self, params)
+    end
+    
   end
 end
