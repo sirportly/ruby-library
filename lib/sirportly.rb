@@ -24,7 +24,7 @@ require 'sirportly/data_objects/ticket_update'
 require 'sirportly/data_objects/user'
 
 module Sirportly
-  VERSION = '1.1.4'
+  VERSION = '1.1.5'
   
   class << self
     
