@@ -192,6 +192,7 @@ This knowledge base object contains all the pages belonging to the knowledge bas
 ```ruby
 sirportly.knowledge_bases.first.pages
 => [#<Sirportly::Page:0x007fe6b40cf7b8>, #<Sirportly::Page:0x007fe6b40cf5d8>]
+```
 
 ### Pages
 
