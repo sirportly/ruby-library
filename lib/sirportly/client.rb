@@ -52,14 +52,9 @@ module Sirportly
       KnowledgeBase.all(self)
     end
     
-    ## Return a page tree for a given knowledge base
-    def pages(q)
-      Page.all(self, q)
-    end
-    
-    ## Return a specific knowledge base page
-    def page(q)
-      Page.find(self, q)
+    ## Return a specific knowledge base
+    def knowledge_base(q)
+      KnowledgeBase.find(self, q)
     end
     
     ## Return all priorities

@@ -183,15 +183,20 @@ You do not need to create individual customers. These are created automatically 
 Knowledge bases hold static pages of information.
 
 ```ruby
+# Get all knowledge bases
 sirportly.knowledge_bases.first.attributes
 => {"id"=>47, "name"=>"Test", "format"=>"markdown", "all_teams"=>true}
+
+# Or by individually by ID
+sirportly.knowledge_base(42)
+=> #<Sirportly::KnowledgeBase:0x007fb8a390a7c8>
 ```
 
-This knowledge base object contains all the pages belonging to the knowledge base.
+If fetched individually, a knowledge base object contains all the pages belonging to the knowledge base.
 
 ```ruby
-sirportly.knowledge_bases.first.pages
-=> [#<Sirportly::Page:0x007fe6b40cf7b8>, #<Sirportly::Page:0x007fe6b40cf5d8>]
+knowledge_bases = sirportly.knowledge_bases.first
+kb_with_pages = sirportly.knowledge_base(knowledge_bases.first.attributes['id'])
 ```
 
 ### Pages
@@ -199,14 +204,14 @@ sirportly.knowledge_bases.first.pages
 A page object contains an array of child pages.
 
 ```ruby
-kb = sirportly.knowledge_bases.first
+kb = sirportly.knowledge_base(kb_id)
 page = kb.pages.first
 page.attributes
-=> {"id"=>392, "title"=>"Test page", "permalink"=>"test-page", "full_permalink"=>"test-page", "position"=>1}
+=> {"id"=>672, "title"=>"Test 2", "permalink"=>"test-2", "full_permalink"=>"test-2", "position"=>2, "children"=>[#<Sirportly::Page {"id"=>673, "title"=>"Child 1", "permalink"=>"child-1", "full_permalink"=>"child-1", "position"=>1, "children"=>[#<Sirportly::Page {"id"=>674, "title"=>"Subchild 1", "permalink"=>"subchild-1", "full_permalink"=>"subchild-1", "position"=>1, "children"=>[]}>]}>]}
 page.has_children?
 => true
-kb.pages.first.children
-=> [#<Sirportly::Page:0x007ff649916a80>]
+page.children
+=> [#<Sirportly::Page:0x007fb1c991f1e0>]
 ```
 
 The API does not support knowledge base creation, but it does support create page creation.

@@ -1,9 +1,9 @@
 module Sirportly
   class Page < DataObject
-    attr_accessor :children
+    self.maps = {'children' => 'Page'}
     
     def has_children?
-      !@children.empty?
+      !self.children.empty?
     end
   end
 end
