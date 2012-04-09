@@ -47,6 +47,21 @@ module Sirportly
       Filter.all(self)
     end
     
+    ## Return all knowledge bases
+    def knowledge_bases
+      KnowledgeBase.all(self)
+    end
+    
+    ## Return a page tree for a given knowledge base
+    def pages(q)
+      Page.all(self, q)
+    end
+    
+    ## Return a specific knowledge base page
+    def page(q)
+      Page.find(self, q)
+    end
+    
     ## Return all priorities
     def priorities
       Priority.all(self)

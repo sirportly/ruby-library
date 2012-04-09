@@ -178,6 +178,48 @@ There are other attributes available, which can be viewed on the [API docs](http
 
 You do not need to create individual customers. These are created automatically on ticket and ticket update creation.
 
+## Knowledge Bases
+
+Knowledge bases hold static pages of information.
+
+```ruby
+sirportly.knowledge_bases.first.attributes
+=> {"id"=>47, "name"=>"Test", "format"=>"markdown", "all_teams"=>true}
+```
+
+This knowledge base object contains all the pages belonging to the knowledge base.
+
+```ruby
+sirportly.knowledge_bases.first.pages
+=> [#<Sirportly::Page:0x007fe6b40cf7b8>, #<Sirportly::Page:0x007fe6b40cf5d8>]
+
+### Pages
+
+A page object contains an array of child pages.
+
+```ruby
+kb = sirportly.knowledge_bases.first
+kb.pages.first.has_children?
+=> true
+kb.pages.first.children
+=> [#<Sirportly::Page:0x007ff649916a80>]
+```
+
+The API does not support knowledge base creation, but it does support create page creation.
+
+```ruby
+page_attributes = {
+  :title => 'My Title',
+  :content => 'Markdown *formatted* content'
+}
+
+kb = sirportly.knowledge_bases.first
+kb.create_page page_attributes
+=> #<Sirportly::Page:0x007ff233970d88>
+```
+
+TODO: Child page creation.
+
 ## Accessing Static Data Objects
 
 The Sirportly API provides access to all the data objects stored in your Sirportly database.
