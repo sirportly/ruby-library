@@ -200,7 +200,10 @@ A page object contains an array of child pages.
 
 ```ruby
 kb = sirportly.knowledge_bases.first
-kb.pages.first.has_children?
+page = kb.pages.first
+page.attributes
+=> {"id"=>392, "title"=>"Test page", "permalink"=>"test-page", "full_permalink"=>"test-page", "position"=>1}
+page.has_children?
 => true
 kb.pages.first.children
 => [#<Sirportly::Page:0x007ff649916a80>]
