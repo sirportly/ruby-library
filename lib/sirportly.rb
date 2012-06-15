@@ -16,7 +16,7 @@ require 'sirportly/data_objects/department'
 require 'sirportly/data_objects/escalation_path'
 require 'sirportly/data_objects/filter'
 require 'sirportly/data_objects/knowledge_base'
-require 'sirportly/data_objects/page'
+require 'sirportly/data_objects/knowledge_base_page'
 require 'sirportly/data_objects/priority'
 require 'sirportly/data_objects/sla'
 require 'sirportly/data_objects/status'
@@ -26,7 +26,7 @@ require 'sirportly/data_objects/ticket_update'
 require 'sirportly/data_objects/user'
 
 module Sirportly
-  VERSION = '1.1.7'
+  VERSION = '1.2.0'
   
   class << self
     

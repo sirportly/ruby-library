@@ -199,32 +199,23 @@ knowledge_bases = sirportly.knowledge_bases.first
 kb_with_pages = sirportly.knowledge_base(knowledge_bases.first.attributes['id'])
 ```
 
-### Pages
+### Knowledge Base Pages
 
 A page object contains an array of child pages.
 
 ```ruby
 kb = sirportly.knowledge_base(kb_id)
-page = kb.pages.first
-page.attributes
-=> {"id"=>672, "title"=>"Test 2", "permalink"=>"test-2", "full_permalink"=>"test-2", "position"=>2, "children"=>[#<Sirportly::Page {"id"=>673, "title"=>"Child 1", "permalink"=>"child-1", "full_permalink"=>"child-1", "position"=>1, "children"=>[#<Sirportly::Page {"id"=>674, "title"=>"Subchild 1", "permalink"=>"subchild-1", "full_permalink"=>"subchild-1", "position"=>1, "children"=>[]}>]}>]}
-page.has_children?
-=> true
-page.children
-=> [#<Sirportly::Page:0x007fb1c991f1e0>]
+kb.tree                           #=> Array of KnowledgeBasePage objects
+page = kb.page('path/to/page')    #=> A KnowledgeBasePage object
+page.children                     #=> Array of KnowledgeBasePage objects 
+
 ```
 
 The API does not support knowledge base creation, but it does support create page creation.
 
 ```ruby
-page_attributes = {
-  :title => 'My Title',
-  :content => 'Markdown *formatted* content'
-}
-
 kb = sirportly.knowledge_bases.first
-kb.create_page page_attributes
-=> #<Sirportly::Page:0x007ff233970d88>
+kb.create_page(:title => 'My Title', :content => 'Content here')  #=> #<Sirportly::Page:0x007ff233970d88>
 ```
 
 TODO: Child page creation.
