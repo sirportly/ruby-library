@@ -67,6 +67,11 @@ module Sirportly
       SLA.all(self)
     end
     
+    ## Return all custom fields
+    def custom_fields
+      CustomField.all(self)
+    end
+    
     ## Execute an SPQL query and return the SPQLQuery instance
     def spql(query)
       SPQLQuery.new(self, query)
