@@ -117,5 +117,13 @@ module Sirportly
       User.create(self, params)
     end
     
+    ## Enable or disable ticket mode for the token's account
+    def import_mode(status = nil)
+      hash = {}
+      hash[:status] = (status ? 'enabled' : 'disabled') unless status.nil?
+      response = Request.request(self, 'accounts/import_mode', hash)
+      response.is_a?(Hash) ? response['status'] : nil
+    end
+    
   end
 end

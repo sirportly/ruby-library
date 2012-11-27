@@ -53,6 +53,7 @@ module Sirportly
       when Net::HTTPServiceUnavailable
         raise Sirportly::Errors::ServiceUnavailable
       when Net::HTTPForbidden, Net::HTTPUnauthorized
+        puts http_result.body.inspect
         raise Sirportly::Errors::AccessDenied, "Access Denied for '#{@client.token}'"
       when Net::HTTPNotFound
         json = JSON.parse(http_result.body)
