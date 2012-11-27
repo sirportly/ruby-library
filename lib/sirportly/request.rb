@@ -30,6 +30,7 @@ module Sirportly
       http_request.initialize_http_header({"User-Agent" => "SirportlyRubyClient/#{Sirportly::VERSION}"})
       http_request.add_field("X-Auth-Token", @client.token)
       http_request.add_field("X-Auth-Secret", @client.secret)
+      http_request.add_field("X-Sirportly-Rules", "disabled") if Sirportly.execute_rules == false
 
       if Sirportly.application
         http_request.add_field("X-Auth-Application", Sirportly.application)

@@ -27,7 +27,7 @@ require 'sirportly/data_objects/ticket_update'
 require 'sirportly/data_objects/user'
 
 module Sirportly
-  VERSION = '1.2.1'
+  VERSION = '1.2.2'
   
   class << self
     
@@ -35,6 +35,10 @@ module Sirportly
     ## application token exists, however if nil, you cannot authenticate using user
     ## tokens.
     attr_accessor :application
+    
+    ## Specifies whether or not to execute rules when running API calls. By default, 
+    ## all rules will be run. Set to false to stop execution.
+    attr_accessor :execute_rules
     
     ## Allow the domain to be changed
     attr_writer :domain
