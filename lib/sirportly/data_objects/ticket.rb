@@ -37,6 +37,15 @@ module Sirportly
       end
     end
     
+    # Allows you to upload attachments to existing ticket updates. Accepts a hash of parameters needed to create the attachment.
+    def add_attachment(params = {})
+      if req = client.request('tickets/add_attachment', format_params(params))
+        true
+      else
+        false
+      end
+    end
+    
     # Adds a follow up to the ticket
     def add_follow_up(params = {})
       if req = client.request('tickets/followup', format_params(params))

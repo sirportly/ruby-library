@@ -3,11 +3,14 @@ require 'uri'
 require 'net/https'
 require 'json'
 
+require 'net/http/post/multipart'
+
 require 'sirportly/client'
 require 'sirportly/request'
 require 'sirportly/data_set'
 require 'sirportly/data_object'
 require 'sirportly/spql_query'
+require 'sirportly/extensions'
 
 require 'sirportly/data_objects/brand'
 require 'sirportly/data_objects/customer'
@@ -27,7 +30,7 @@ require 'sirportly/data_objects/ticket_update'
 require 'sirportly/data_objects/user'
 
 module Sirportly
-  VERSION = '1.2.3'
+  VERSION = '1.2.4'
   
   class << self
     

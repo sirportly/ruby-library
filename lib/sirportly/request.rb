@@ -26,8 +26,8 @@ module Sirportly
     
     def make
       uri = URI.parse([Sirportly.domain, "api/v1", @path].join('/'))
-      http_request = http_class.new(uri.request_uri)
-      http_request.initialize_http_header({"User-Agent" => "SirportlyRubyClient/#{Sirportly::VERSION}"})
+      http_request = http_req(uri, @data.stringify_keys)
+      http_request.add_field("User-Agent", "SirportlyRubyClient/#{Sirportly::VERSION}")
       http_request.add_field("X-Auth-Token", @client.token)
       http_request.add_field("X-Auth-Secret", @client.secret)
       http_request.add_field("X-Sirportly-Rules", "disabled") if Sirportly.execute_rules == false
@@ -36,15 +36,13 @@ module Sirportly
         http_request.add_field("X-Auth-Application", Sirportly.application)
       end
 
-      http_request.set_form_data(@data)
-      
       http = Net::HTTP.new(uri.host, uri.port)
       
       if uri.scheme == 'https'
         http.use_ssl = true
         http.verify_mode = OpenSSL::SSL::VERIFY_NONE
       end
-      
+            
       http_result = http.request(http_request)
       @output = JSON.parse(http_result.body)
       @success = case http_result
@@ -69,13 +67,29 @@ module Sirportly
     
     private
     
-    def http_class  
+    def http_req(uri, data)
       case @method
-      when :post    then Net::HTTP::Post
-      when :put     then Net::HTTP::Put
-      when :delete  then Net::HTTP::Delete
+      when :post
+        if data["file"]
+          r = Net::HTTP::Post::Multipart.new(uri.request_uri, data)
+        else
+          r = Net::HTTP::Put.new(uri.request_uri)
+          r.set_form_data(data)
+        end
+        
+        return r
+      when :put
+        r = Net::HTTP::Put.new(uri.request_uri)
+        r.set_form_data(data)
+        return r
+      when :delete
+        r = Net::HTTP::Delete.new(uri.request_uri)
+        r.set_form_data(data)
+        return r
       else
-        Net::HTTP::Get
+        r = Net::HTTP::Get.new(uri.request_uri)
+        r.set_form_data(data)
+        return r
       end
     end
     
