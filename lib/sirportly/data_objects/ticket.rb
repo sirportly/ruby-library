@@ -55,6 +55,11 @@ module Sirportly
       end
     end
     
+    # Permanently removes the ticket
+    def destroy
+      client.request('tickets/permanently_delete', {:ticket => @attributes['reference']})
+    end
+    
     # Creates a new ticket and returns a ticket object
     def self.create(client, params = {})
       if req = client.request('tickets/submit', format_params(params))

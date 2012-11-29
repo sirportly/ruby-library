@@ -44,7 +44,15 @@ module Sirportly
       end
 
       http_result = http.request(http_request)
-      @output = JSON.parse(http_result.body)
+      
+      if http_result.body == 'true'
+        @output = true
+      elsif http_result.body == 'false'
+        @output = false
+      else
+        @output = JSON.parse(http_result.body)
+      end
+      
       @success = case http_result
       when Net::HTTPSuccess
         true
