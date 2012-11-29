@@ -42,7 +42,7 @@ module Sirportly
         http.use_ssl = true
         http.verify_mode = OpenSSL::SSL::VERIFY_NONE
       end
-            
+
       http_result = http.request(http_request)
       @output = JSON.parse(http_result.body)
       @success = case http_result

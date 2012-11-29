@@ -12,6 +12,7 @@ require 'sirportly/data_object'
 require 'sirportly/spql_query'
 require 'sirportly/extensions'
 
+require 'sirportly/data_objects/api_token'
 require 'sirportly/data_objects/brand'
 require 'sirportly/data_objects/customer'
 require 'sirportly/data_objects/customer_contact_method'
@@ -30,7 +31,7 @@ require 'sirportly/data_objects/ticket_update'
 require 'sirportly/data_objects/user'
 
 module Sirportly
-  VERSION = '1.2.4'
+  VERSION = '1.2.7'
   
   class << self
     

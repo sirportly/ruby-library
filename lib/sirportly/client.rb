@@ -117,6 +117,16 @@ module Sirportly
       User.create(self, params)
     end
     
+    ## Return all api token
+    def api_tokens
+      ApiToken.all(self)
+    end
+    
+    ## Creates a new api token
+    def create_api_token(params = {})
+      ApiToken.create(self, params)
+    end
+    
     ## Enable or disable ticket mode for the token's account
     def import_mode(status = nil)
       hash = {}
