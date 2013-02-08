@@ -49,8 +49,6 @@ module Sirportly
         @output = true
       elsif http_result.body == 'false'
         @output = false
-      elsif !http_result.body.is_a?(Hash)
-        @output = http_result.body
       else
         @output = JSON.parse(http_result.body)
       end
