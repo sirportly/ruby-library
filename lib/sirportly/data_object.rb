@@ -8,7 +8,7 @@ module Sirportly
       
       def all(client, options = {})
         raise Sirportly::Error, "This object does not support a full list" if collection_path.nil?
-        result = client.request(collection_path, :page => options[:page] || 1)
+        result = client.request(collection_path, options)
         DataSet.new(client, result, self)
       end
       
