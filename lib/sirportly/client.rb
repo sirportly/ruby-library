@@ -88,8 +88,8 @@ module Sirportly
     end
     
     ## Return all tickets
-    def tickets
-      Ticket.all(self)
+    def tickets(opts = {})
+      Ticket.all(self, opts)
     end
     
     ## Return a specific ticket
