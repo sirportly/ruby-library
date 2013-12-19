@@ -23,9 +23,13 @@ module Sirportly
     def output
       @output || nil
     end
-    
+
+    def api_version
+      @api_version ||= 'api/v1'
+    end
+
     def make
-      uri = URI.parse([Sirportly.domain, "api/v1", @path].join('/'))
+      uri = URI.parse([Sirportly.domain, self.api_version, @path].join('/'))
       http_request = http_req(uri, @data.stringify_keys)
       http_request.add_field("User-Agent", "SirportlyRubyClient/#{Sirportly::VERSION}")
       http_request.add_field("X-Auth-Token", @client.token)
