@@ -31,7 +31,7 @@ require 'sirportly/data_objects/ticket_update'
 require 'sirportly/data_objects/user'
 
 module Sirportly
-  VERSION = '1.3.3'
+  VERSION = '1.3.6'
   
   class << self
     
