@@ -88,6 +88,14 @@ module Sirportly
         false
       end
     end
+
+    def self.contact(client, options)
+      if req = client.request('tickets/contact', options)
+        DataSet.new(client, req, self)
+      else
+        false
+      end
+    end
     
     private
     

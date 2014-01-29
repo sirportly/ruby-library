@@ -126,6 +126,10 @@ module Sirportly
     def create_api_token(params = {})
       ApiToken.create(self, params)
     end
+
+    def contact_tickets(params = {})
+      Ticket.contact(self, params)
+    end
     
     ## Enable or disable ticket mode for the token's account
     def import_mode(status = nil)
