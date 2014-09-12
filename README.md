@@ -33,6 +33,14 @@ can set this as follows:
 Sirportly.application = 'your_application_token'
 ```
 
+### Custom Domains
+
+If you are using a custom installation of Sirportly, you can set the domain as follows:
+
+```ruby
+Sirportly.domain = "https://my-domain.com"
+```
+
 ## Creating a ticket
 
 You can create tickets within your Sirportly system with a few commands. It's important to note that
