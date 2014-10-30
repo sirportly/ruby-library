@@ -33,7 +33,7 @@ require 'sirportly/data_objects/user'
 require 'sirportly/data_objects/support_centre'
 
 module Sirportly
-  VERSION = '1.3.8'
+  VERSION = '2.0.0'
   
   class << self
     
