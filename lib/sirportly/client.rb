@@ -7,9 +7,14 @@ module Sirportly
       @token, @secret = token, secret
     end
     
-    ## Make a request using this client's authentication token and return the request.
+    ## Make a v1 api request using this client's authentication token and return the request.
     def request(*args)
       Request.request(self, *args)
+    end
+
+    ## Make a v1 api request using this client's authentication token and return the request.
+    def request_v2(*args)
+      RequestV2.request(self, *args)
     end
     
     ## Return all brands
@@ -115,6 +120,10 @@ module Sirportly
     ## Create a user
     def create_user(params = {})
       User.create(self, params)
+    end
+
+    def support_centres(opts = {})
+      SupportCentre.all(self, opts)
     end
     
     ## Return all api token
