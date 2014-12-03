@@ -25,5 +25,24 @@ module Sirportly
 
       URI::HTTP.build([nil, self.access_domain, nil, ['/login', support_centre_token].join('/'), return_to ? "return_to=#{return_to}" : nil, nil]).to_s
     end
+
+    def topics
+      result = client.request('support_centres/topics', :support_centre => attributes['id'])
+      result['records'].map { |topic| topic['support_centre'] = attributes['id']; SupportCentreTopic.new(client, topic) }
+    end
+
+    def topic(query)
+      SupportCentreTopic.find(client, query, self.id)
+    end
+
+    def add_topic(params = {})
+      params.merge!({:support_centre => self.attributes['id']})
+      if req = @client.request('support_centres/add_topic', params)
+        SupportCentreTopic.new(@client, req)
+      else
+        false
+      end
+    end
+
   end
 end
