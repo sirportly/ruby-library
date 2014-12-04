@@ -32,7 +32,7 @@ module Sirportly
     end
 
     def topics
-      result = client.request('support_centres/topics', :support_centre => attributes['id'])
+      result = client.request( SupportCentreTopic.collection_path, :support_centre => attributes['id'])
       result['records'].map { |topic| topic['support_centre_id'] = attributes['id']; SupportCentreTopic.new(client, topic) }
     end
 
