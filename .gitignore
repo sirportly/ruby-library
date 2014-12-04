@@ -1,3 +1,5 @@
-test.rb
 *.gem
 .rvmrc
+Gemfile.lock
+.ruby-version
+.ruby-gemset
