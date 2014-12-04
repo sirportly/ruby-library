@@ -4,6 +4,12 @@ module Sirportly
     
     def self.find(client, query, support_centre, topic)
       results = client.request("support_centres/articles", :support_centre => support_centre, :topic => topic)['records']
+      result = results.select { |article| article['id'] == query.to_i }.first
+      self.new(client, result)
+    end
+    
+    def self.search(client, query, support_centre, topic)
+      results = client.request("support_centres/articles", :support_centre => support_centre, :topic => topic)['records']
       result = results.select { |article| 
         article.select { |key, value| value == query } != {} 
       }.first

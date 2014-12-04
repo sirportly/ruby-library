@@ -3,6 +3,11 @@ module Sirportly
     self.collection_path = 'support_centres/list'
 
     def self.find(client, query)
+      result = client.request(collection_path)['records'].select { |support_centre| support_centre['id'] == query.to_i }.first
+      self.new(client, result) if result
+    end
+
+    def self.search(client, query)
       result = client.request(collection_path)['records'].select { |support_centre| 
         support_centre.select { |key, value| value == query} != {} 
       }.first
