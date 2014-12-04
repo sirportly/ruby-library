@@ -37,7 +37,7 @@ module Sirportly
     end
 
     def topic(query)
-      SupportCentreTopic.find(client, query, self.id)
+      SupportCentreTopic.find(client, self.id, query)
     end
 
     def add_topic(params = {})
