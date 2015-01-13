@@ -125,6 +125,10 @@ module Sirportly
       SupportCentre.find(self, q)
     end
     
+    def news(opts = {})
+      SupportCentreNews.all(self, opts)
+    end
+    
     ## Return all api token
     def api_tokens
       ApiToken.all(self)
