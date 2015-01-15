@@ -116,6 +116,18 @@ module Sirportly
     def create_user(params = {})
       User.create(self, params)
     end
+
+    def support_centres(opts = {})
+      SupportCentre.all(self, opts)
+    end
+
+    def support_centre(q)
+      SupportCentre.find(self, q)
+    end
+    
+    def news(opts = {})
+      SupportCentreNews.all(self, opts)
+    end
     
     ## Return all api token
     def api_tokens
