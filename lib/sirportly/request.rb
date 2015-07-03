@@ -1,50 +1,50 @@
 module Sirportly
   class Request
-    
+
     def self.request(client, path, data = {})
       req = self.new(client, path, :post)
       req.data = data
       req.make && req.success? ? req.output : false
     end
-    
+
     attr_reader :path, :method, :client
     attr_accessor :data
-    
+
     def initialize(client, path, method = :get)
       @path = path
       @method = method
       @client = client
     end
-    
+
     def success?
       @success || false
     end
-    
+
     def output
       @output || nil
     end
-    
+
     def make
-      uri = URI.parse([Sirportly.domain, "api/v1", @path].join('/'))
+      uri = URI.parse([@client.hostname, "api/v1", @path].join('/'))
       http_request = http_req(uri, @data.stringify_keys)
       http_request.add_field("User-Agent", "SirportlyRubyClient/#{Sirportly::VERSION}")
       http_request.add_field("X-Auth-Token", @client.token)
       http_request.add_field("X-Auth-Secret", @client.secret)
       http_request.add_field("X-Sirportly-Rules", "disabled") if Sirportly.execute_rules == false
 
-      if Sirportly.application
-        http_request.add_field("X-Auth-Application", Sirportly.application)
+      if @client.application
+        http_request.add_field("X-Auth-Application", @client.application)
       end
 
       http = Net::HTTP.new(uri.host, uri.port)
-      
+
       if uri.scheme == 'https'
         http.use_ssl = true
         http.verify_mode = OpenSSL::SSL::VERIFY_NONE
       end
 
       http_result = http.request(http_request)
-      
+
       if http_result.body == 'true'
         @output = true
       elsif http_result.body == 'false'
@@ -52,7 +52,7 @@ module Sirportly
       else
         @output = JSON.parse(http_result.body)
       end
-      
+
       @success = case http_result
       when Net::HTTPSuccess
         true
@@ -72,9 +72,9 @@ module Sirportly
       end
       self
     end
-    
+
     private
-    
+
     def http_req(uri, data)
       case @method
       when :post
@@ -84,7 +84,7 @@ module Sirportly
           r = Net::HTTP::Put.new(uri.request_uri)
           r.set_form_data(data)
         end
-        
+
         return r
       when :put
         r = Net::HTTP::Put.new(uri.request_uri)
@@ -100,6 +100,6 @@ module Sirportly
         return r
       end
     end
-    
+
   end
 end
