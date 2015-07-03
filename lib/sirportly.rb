@@ -31,29 +31,29 @@ require 'sirportly/data_objects/ticket_update'
 require 'sirportly/data_objects/user'
 
 module Sirportly
-  VERSION = '1.3.8'
-  
+  VERSION = '1.3.9'
+
   class << self
-    
+
     ## Stores the application token if one has been provided. This can be nil if no
     ## application token exists, however if nil, you cannot authenticate using user
     ## tokens.
     attr_accessor :application
-    
-    ## Specifies whether or not to execute rules when running API calls. By default, 
+
+    ## Specifies whether or not to execute rules when running API calls. By default,
     ## all rules will be run. Set to false to stop execution.
     attr_accessor :execute_rules
-    
+
     ## Allow the domain to be changed
     attr_writer :domain
-    
+
     ## Returns the domain which should be used to query the API
     def domain
       @domain ||= 'https://api.sirportly.com'
     end
-    
+
   end
-  
+
   ## Various error classes to raise
   class Error < StandardError; end
   module Errors
@@ -63,5 +63,5 @@ module Sirportly
     class CommunicationError < Error; end
     class ValidationError < Error; end
   end
-  
+
 end

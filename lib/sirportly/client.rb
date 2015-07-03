@@ -1,10 +1,10 @@
 module Sirportly
   class Client
 
-    attr_reader :token, :secret, :hostname, :application
+    attr_reader :token, :secret, :opts
 
-    def initialize(token, secret, hostname = Sirportly.domain, application = Sirportly.application)
-      @token, @secret, @hostname, @application = token, secret, hostname, application
+    def initialize(token, secret, opts={})
+      @token, @secret, @opts = token, secret, opts
     end
 
     ## Make a request using this client's authentication token and return the request.

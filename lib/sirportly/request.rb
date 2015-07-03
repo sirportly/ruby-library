@@ -25,15 +25,15 @@ module Sirportly
     end
 
     def make
-      uri = URI.parse([@client.hostname, "api/v1", @path].join('/'))
+      uri = URI.parse([domain, "api/v1", @path].join('/'))
       http_request = http_req(uri, @data.stringify_keys)
       http_request.add_field("User-Agent", "SirportlyRubyClient/#{Sirportly::VERSION}")
       http_request.add_field("X-Auth-Token", @client.token)
       http_request.add_field("X-Auth-Secret", @client.secret)
       http_request.add_field("X-Sirportly-Rules", "disabled") if Sirportly.execute_rules == false
 
-      if @client.application
-        http_request.add_field("X-Auth-Application", @client.application)
+      if application
+        http_request.add_field("X-Auth-Application", application)
       end
 
       http = Net::HTTP.new(uri.host, uri.port)
@@ -99,6 +99,14 @@ module Sirportly
         r.set_form_data(data)
         return r
       end
+    end
+
+    def domain
+      @client.opts[:domain] || Sirportly.domain
+    end
+
+    def application
+      @client.opts[:application] || Sirportly.application
     end
 
   end
