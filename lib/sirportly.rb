@@ -13,6 +13,7 @@ require 'sirportly/spql_query'
 require 'sirportly/extensions'
 
 require 'sirportly/data_objects/api_token'
+require 'sirportly/data_objects/attachment'
 require 'sirportly/data_objects/brand'
 require 'sirportly/data_objects/customer'
 require 'sirportly/data_objects/customer_contact_method'

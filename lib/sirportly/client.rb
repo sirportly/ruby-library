@@ -97,6 +97,11 @@ module Sirportly
       Ticket.find(self, q)
     end
 
+    ## Return a specific attachment
+    def attachment(q)
+      Attachment.fetch(self, q)
+    end
+
     ## Return a set of tickets for given search term
     def ticket_search(query, page = 1)
       Ticket.search(self, query, page)
