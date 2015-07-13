@@ -47,9 +47,17 @@ module Sirportly
     ## Allow the domain to be changed
     attr_writer :domain
 
+    ## Stores which version of the API to use
+    attr_writer :api_version
+
     ## Returns the domain which should be used to query the API
     def domain
       @domain ||= 'https://api.sirportly.com'
+    end
+
+    ## Returns the api version currently being used
+    def api_version
+      @api_version ||= 'v1'
     end
 
   end
