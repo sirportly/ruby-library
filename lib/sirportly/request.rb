@@ -50,7 +50,11 @@ module Sirportly
       elsif http_result.body == 'false'
         @output = false
       else
-        @output = JSON.parse(http_result.body)
+        @output = begin
+          JSON.parse(http_result.body)
+        rescue JSON::ParserError
+          http_result.body
+        end
       end
 
       @success = case http_result
