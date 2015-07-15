@@ -32,8 +32,6 @@ require 'sirportly/data_objects/ticket_update'
 require 'sirportly/data_objects/user'
 
 module Sirportly
-  VERSION = '1.3.9'
-
   class << self
 
     ## Stores the application token if one has been provided. This can be nil if no
