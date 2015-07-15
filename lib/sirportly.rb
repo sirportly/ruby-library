@@ -5,6 +5,7 @@ require 'json'
 
 require 'net/http/post/multipart'
 
+require 'sirportly/version'
 require 'sirportly/client'
 require 'sirportly/request'
 require 'sirportly/data_set'
