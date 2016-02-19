@@ -83,8 +83,8 @@ module Sirportly
     end
 
     ## Return all teams
-    def teams
-      Team.all(self)
+    def teams(opts = {})
+      Team.all(self, opts)
     end
 
     ## Return all tickets
@@ -95,6 +95,11 @@ module Sirportly
     ## Return a specific ticket
     def ticket(q)
       Ticket.find(self, q)
+    end
+
+    ## Return a specific attachment
+    def attachment(q)
+      Attachment.fetch(self, q)
     end
 
     ## Return a set of tickets for given search term

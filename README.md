@@ -26,7 +26,7 @@ to access your database.
 sirportly = Sirportly::Client.new('the_token', 'the_secret')
 ```
 
-If you have been provided with an application token to use with user-based authentication you 
+If you have been provided with an application token to use with user-based authentication you
 can set this as follows:
 
 ```ruby
@@ -91,9 +91,9 @@ filter.tickets(:user => 'adam')     #=> The tickets as if being accessed by 'ada
 ## Changing ticket properties
 
 If you wish to change properties of a ticket, you can use the `update` method. This method behaves
-exactly the same as the corresponding API method and further details can be found in the 
-[documentation](https://atech.sirportly.com/knowledge/4/api-specification/tickets/changing-ticket-properties). 
-You can pass strings, IDs or `Sirportly::DataObject` objects as values. 
+exactly the same as the corresponding API method and further details can be found in the
+[documentation](https://atech.sirportly.com/knowledge/4/api-specification/tickets/changing-ticket-properties).
+You can pass strings, IDs or `Sirportly::DataObject` objects as values.
 
 ```ruby
 ticket = sirportly.ticket('AB-123123')
@@ -115,7 +115,7 @@ Once an update has been carried out, the original ticket object will be updated 
 Posting updates to tickets is a simple affair and the `post_update` method on a `Sirportly::Ticket`
 will accept the same parameters as defined in the [documentation](http://www.sirportly.com/docs/api-specification/tickets/posting-an-update).
 
-As you will see from the examples below, you can pass a `Sirportly::User` instance to `user` and a 
+As you will see from the examples below, you can pass a `Sirportly::User` instance to `user` and a
 `Sirportly::Customer` instance to `customer` although strings are perfectly acceptable too.
 
 The `post_update` method will return a `Sirportly::TicketUpdate` instance and the new update will
@@ -141,6 +141,17 @@ ticket.post_update(:message => "My Example", :user => 'adam', :outbound_address 
 ticket.post_update(:message => "Private Msg", :private => true, :user => 'charlie')
 ```
 
+## Getting Attachment Content
+
+This method allows you to download the contents of an attachment on a ticket.
+
+* ```ticket``` - the REFERENCE for the ticket which the attachment belongs to
+* ```attachment``` - the ID of the attachment which you wish to download
+
+```ruby
+sirportly.attachment(ticket: '012345', attachment: '012345')
+```
+
 ## Executing Macros
 
 If you wish to execute one of your macros on a ticket, you can use the `run_macro` method
@@ -155,7 +166,7 @@ ticket.run_macro('Mark as waiting for staff')
 
 ## Adding follow ups
 
-Adding to follow ups to tickets can be achieved by executing the `add_follow_up` method on a 
+Adding to follow ups to tickets can be achieved by executing the `add_follow_up` method on a
 `Sirportly::Ticket` instance.
 
 ```ruby
@@ -164,7 +175,7 @@ ticket.add_follow_up(:actor => 'adam', :status => 'resolved', :run_at => '2 days
 ```
 
 The `run_at` attribute should be a timestamp as outlined on our
-[date/time formatting page](http://www.sirportly.com/docs/api-specification/date-time-formatting) in 
+[date/time formatting page](http://www.sirportly.com/docs/api-specification/date-time-formatting) in
 the API documentation.
 
 ## Creating a user
@@ -215,7 +226,7 @@ A page object contains an array of child pages.
 kb = sirportly.knowledge_base(kb_id)
 kb.tree                           #=> Array of KnowledgeBasePage objects
 page = kb.page('path/to/page')    #=> A KnowledgeBasePage object
-page.children                     #=> Array of KnowledgeBasePage objects 
+page.children                     #=> Array of KnowledgeBasePage objects
 
 ```
 
@@ -231,7 +242,7 @@ TODO: Child page creation.
 ## Accessing Static Data Objects
 
 The Sirportly API provides access to all the data objects stored in your Sirportly database.
-At the current time, these cannot be edited through the API. 
+At the current time, these cannot be edited through the API.
 
 ```ruby
 sirportly.statuses                  #=> Set of all statuses as Sirportly::Status objects
@@ -248,7 +259,7 @@ filters, priorities, slas, statuses, teams and users.
 
 ## Pagination
 
-Some results from the API are paginated as outlined below. By default, it will always 
+Some results from the API are paginated as outlined below. By default, it will always
 return the first page.
 
 ```ruby
@@ -267,7 +278,7 @@ users.pages             #=> 2
 users.offset            #=> 0
 ```
 
-If a result set is not paginated, the methods outlined above will be nil. Pagination will only occur 
+If a result set is not paginated, the methods outlined above will be nil. Pagination will only occur
 at the top level of results and does not happen on arrays within objects.
 
 ## Executing SPQL queries

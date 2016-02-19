@@ -5,6 +5,7 @@ require 'json'
 
 require 'net/http/post/multipart'
 
+require 'sirportly/version'
 require 'sirportly/client'
 require 'sirportly/request'
 require 'sirportly/data_set'
@@ -13,6 +14,7 @@ require 'sirportly/spql_query'
 require 'sirportly/extensions'
 
 require 'sirportly/data_objects/api_token'
+require 'sirportly/data_objects/attachment'
 require 'sirportly/data_objects/brand'
 require 'sirportly/data_objects/customer'
 require 'sirportly/data_objects/customer_contact_method'
@@ -31,8 +33,6 @@ require 'sirportly/data_objects/ticket_update'
 require 'sirportly/data_objects/user'
 
 module Sirportly
-  VERSION = '1.3.9'
-
   class << self
 
     ## Stores the application token if one has been provided. This can be nil if no
@@ -47,9 +47,17 @@ module Sirportly
     ## Allow the domain to be changed
     attr_writer :domain
 
+    ## Stores which version of the API to use
+    attr_writer :api_version
+
     ## Returns the domain which should be used to query the API
     def domain
       @domain ||= 'https://api.sirportly.com'
+    end
+
+    ## Returns the api version currently being used
+    def api_version
+      @api_version ||= 'v1'
     end
 
   end

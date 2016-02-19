@@ -25,7 +25,7 @@ module Sirportly
     end
 
     def make
-      uri = URI.parse([domain, "api/v1", @path].join('/'))
+      uri = URI.parse( File.join(domain, "api", Sirportly.api_version, @path) )
       http_request = http_req(uri, @data.stringify_keys)
       http_request.add_field("User-Agent", "SirportlyRubyClient/#{Sirportly::VERSION}")
       http_request.add_field("X-Auth-Token", @client.token)
@@ -50,7 +50,11 @@ module Sirportly
       elsif http_result.body == 'false'
         @output = false
       else
-        @output = JSON.parse(http_result.body)
+        @output = begin
+          JSON.parse(http_result.body)
+        rescue JSON::ParserError
+          http_result.body
+        end
       end
 
       @success = case http_result
