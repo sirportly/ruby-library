@@ -83,8 +83,8 @@ module Sirportly
     end
 
     ## Return all teams
-    def teams
-      Team.all(self)
+    def teams(opts = {})
+      Team.all(self, opts)
     end
 
     ## Return all tickets
