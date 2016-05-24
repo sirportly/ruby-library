@@ -49,8 +49,10 @@ module Sirportly
         @output = true
       elsif http_result.body == 'false'
         @output = false
-      else
+      elsif http_result.content_type == 'application/json'
         @output = JSON.parse(http_result.body)
+      else
+        @output = http_result.body
       end
 
       @success = case http_result
