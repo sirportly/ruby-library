@@ -131,6 +131,14 @@ module Sirportly
       Ticket.contact(self, params)
     end
 
+    def twitter_accounts(params = {})
+      TwitterAccount.all(self, params)
+    end
+
+    def facebook_pages(params = {})
+      FacebookPage.all(self, params)
+    end
+
     ## Enable or disable ticket mode for the token's account
     def import_mode(status = nil)
       hash = {}

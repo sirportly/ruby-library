@@ -19,6 +19,7 @@ require 'sirportly/data_objects/customer_contact_method'
 require 'sirportly/data_objects/custom_field'
 require 'sirportly/data_objects/department'
 require 'sirportly/data_objects/escalation_path'
+require 'sirportly/data_objects/facebook_page'
 require 'sirportly/data_objects/filter'
 require 'sirportly/data_objects/knowledge_base'
 require 'sirportly/data_objects/knowledge_base_page'
@@ -28,10 +29,11 @@ require 'sirportly/data_objects/status'
 require 'sirportly/data_objects/team'
 require 'sirportly/data_objects/ticket'
 require 'sirportly/data_objects/ticket_update'
+require 'sirportly/data_objects/twitter_account'
 require 'sirportly/data_objects/user'
 
 module Sirportly
-  VERSION = '1.4.1'
+  VERSION = '1.4.2'
 
   class << self
 
