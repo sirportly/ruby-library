@@ -3,8 +3,6 @@ require 'uri'
 require 'net/https'
 require 'json'
 
-require 'net/http/post/multipart'
-
 require 'sirportly/client'
 require 'sirportly/request'
 require 'sirportly/request_v2'
