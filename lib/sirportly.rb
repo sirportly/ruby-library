@@ -33,7 +33,7 @@ require 'sirportly/data_objects/twitter_account'
 require 'sirportly/data_objects/user'
 
 module Sirportly
-  VERSION = '1.4.2'
+  VERSION = '1.4.3'
 
   class << self
 
