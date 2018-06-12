@@ -37,6 +37,7 @@ module Sirportly
       end
 
       http = Net::HTTP.new(uri.host, uri.port)
+      http.open_timeout = ENV['NET_HTTP_OPEN_TIMOUT'] || 5
 
       if uri.scheme == 'https'
         http.use_ssl = true
